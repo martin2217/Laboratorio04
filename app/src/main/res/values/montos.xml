@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="montos_array">
+        <item>0</item>
+        <item>5000</item>
+        <item>99000</item>
+    </string-array>
+</resources>
