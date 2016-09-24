@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity
         public void onClick(View view) {
             Intent i = new Intent(MainActivity.this,ListaDepartamentosActivity.class);
             frmBusq.setPermiteFumar(swFumadores.isSelected());
+            // TODO .. Agregar a frmBusq los valores que faltan?
             i.putExtra("esBusqueda",true);
             i.putExtra("frmBusqueda",frmBusq);
             startActivity(i);

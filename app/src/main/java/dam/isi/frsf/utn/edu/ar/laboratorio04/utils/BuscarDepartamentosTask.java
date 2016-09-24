@@ -44,6 +44,7 @@ public class BuscarDepartamentosTask extends AsyncTask<FormBusqueda,Integer,List
         int contador = 0;
         Ciudad ciudadBuscada = busqueda[0].getCiudad();
         // TODO implementar: buscar todos los departamentos del sistema e ir chequeando las condiciones 1 a 1.
+
         // si cumplen las condiciones agregarlo a los resultados.
         return resultado;
     }
