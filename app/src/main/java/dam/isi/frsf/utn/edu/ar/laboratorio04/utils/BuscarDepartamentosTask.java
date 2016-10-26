@@ -6,6 +6,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import dam.isi.frsf.utn.edu.ar.laboratorio04.ListaDepartamentosActivity;
 import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Ciudad;
 import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Departamento;
 import dam.isi.frsf.utn.edu.ar.laboratorio04.utils.BusquedaFinalizadaListener;
@@ -28,6 +29,8 @@ public class BuscarDepartamentosTask extends AsyncTask<FormBusqueda,Integer,List
 
     @Override
     protected void onPostExecute(List<Departamento> departamentos) {
+
+
     }
 
     @Override
@@ -41,11 +44,13 @@ public class BuscarDepartamentosTask extends AsyncTask<FormBusqueda,Integer,List
     protected List<Departamento> doInBackground(FormBusqueda... busqueda) {
         List<Departamento> todos = Departamento.getAlojamientosDisponibles();
         List<Departamento> resultado = new ArrayList<Departamento>();
+
         int contador = 0;
         Ciudad ciudadBuscada = busqueda[0].getCiudad();
-        // TODO implementar: buscar todos los departamentos del sistema e ir chequeando las condiciones 1 a 1.
 
-        // si cumplen las condiciones agregarlo a los resultados.
+        for(Departamento departamento: todos){
+
+        }
         return resultado;
     }
 }

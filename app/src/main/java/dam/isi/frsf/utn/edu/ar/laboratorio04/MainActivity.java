@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.SwitchCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -18,6 +20,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -60,6 +63,8 @@ public class MainActivity extends AppCompatActivity
 
         frmBusq= new FormBusqueda();
         txtHuespedes = (EditText) findViewById(R.id.cantHuespedes);
+        txtHuespedes.addTextChangedListener(listenerHuespedes);
+
         skPrecioMin = (SeekBar) findViewById(R.id.precioMin);
         skPrecioMin.setOnSeekBarChangeListener(listenerSB);
 
@@ -67,6 +72,8 @@ public class MainActivity extends AppCompatActivity
         skPrecioMax.setOnSeekBarChangeListener(listenerSB);
 
         swFumadores = (Switch) findViewById(R.id.aptoFumadores);
+        swFumadores.setOnCheckedChangeListener(listenerFumadores);
+
         adapterCiudad = new ArrayAdapter<Ciudad>(MainActivity.this,android.R.layout.simple_spinner_item, Arrays.asList(Ciudad.CIUDADES));
 
         cmbCiudad = (Spinner) findViewById(R.id.comboCiudad);
@@ -98,6 +105,26 @@ public class MainActivity extends AppCompatActivity
             Log.d("MainActivity","ciudad seteada "+item);
         }
         public void onNothingSelected(AdapterView<?> parent) {
+        }
+    };
+
+    private TextWatcher listenerHuespedes = new TextWatcher(){
+        @Override
+        public void afterTextChanged(Editable s) {
+            frmBusq.setHuespedes(Integer.parseInt(txtHuespedes.getText().toString()));
+        }
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+    };
+
+    private CompoundButton.OnCheckedChangeListener listenerFumadores = new CompoundButton.OnCheckedChangeListener(){
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            frmBusq.setPermiteFumar(isChecked);
         }
     };
 
