@@ -30,7 +30,6 @@ public class BuscarDepartamentosTask extends AsyncTask<FormBusqueda,Integer,List
     @Override
     protected void onPostExecute(List<Departamento> departamentos) {
 
-
     }
 
     @Override
@@ -47,9 +46,12 @@ public class BuscarDepartamentosTask extends AsyncTask<FormBusqueda,Integer,List
 
         int contador = 0;
         Ciudad ciudadBuscada = busqueda[0].getCiudad();
-
+        int huespedes = busqueda[0].getHuespedes();
+        double min = busqueda[0].getPrecioMinimo();
+        double max = busqueda[0].getPrecioMaximo();
+        boolean permiteFumar =  busqueda[0].getPermiteFumar();
         for(Departamento departamento: todos){
-
+            // TODO Implementar Comparator para agregar los elementos a la lista
         }
         return resultado;
     }
