@@ -54,10 +54,13 @@ public class ListaDepartamentosActivity extends AppCompatActivity implements Bus
 
     @Override
     public void busquedaFinalizada(List<Departamento> listaDepartamento) {
-        //TODO implementar
+        tvEstadoBusqueda.setVisibility(View.GONE);
         lista.clear();
         lista=listaDepartamento;
-        departamentosAdapter.notifyDataSetChanged();
+        // TODO por que no funciona el notify solo?
+        //departamentosAdapter.notifyDataSetChanged();
+        departamentosAdapter = new DepartamentoAdapter(ListaDepartamentosActivity.this,lista);
+        listaAlojamientos.setAdapter(departamentosAdapter);
     }
 
     @Override

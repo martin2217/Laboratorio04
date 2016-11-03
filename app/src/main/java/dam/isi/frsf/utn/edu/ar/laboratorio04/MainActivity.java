@@ -110,7 +110,10 @@ public class MainActivity extends AppCompatActivity
     private TextWatcher listenerHuespedes = new TextWatcher(){
         @Override
         public void afterTextChanged(Editable s) {
-            frmBusq.setHuespedes(Integer.parseInt(txtHuespedes.getText().toString()));
+            if(txtHuespedes.getText().toString().equals("")){
+                frmBusq.setHuespedes(null);
+            }
+            else frmBusq.setHuespedes(Integer.parseInt(txtHuespedes.getText().toString()));
         }
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {

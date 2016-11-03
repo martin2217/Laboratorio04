@@ -29,7 +29,7 @@ public class BuscarDepartamentosTask extends AsyncTask<FormBusqueda,Integer,List
 
     @Override
     protected void onPostExecute(List<Departamento> departamentos) {
-
+        listener.busquedaFinalizada(departamentos);
     }
 
     @Override
@@ -45,14 +45,29 @@ public class BuscarDepartamentosTask extends AsyncTask<FormBusqueda,Integer,List
         List<Departamento> resultado = new ArrayList<Departamento>();
 
         int contador = 0;
-        Ciudad ciudadBuscada = busqueda[0].getCiudad();
-        int huespedes = busqueda[0].getHuespedes();
-        double min = busqueda[0].getPrecioMinimo();
-        double max = busqueda[0].getPrecioMaximo();
+        final Ciudad ciudadBuscada = busqueda[0].getCiudad();
+
+        int huespedes=0;
+        if(busqueda[0].getHuespedes()==null) huespedes=0;
+        else huespedes=busqueda[0].getHuespedes();
+
+        // TODO Como se manejan los valores nulos?
+        //double min = busqueda[0].getPrecioMinimo();
+        //double max = busqueda[0].getPrecioMaximo();
+
+        // No tenido en cuenta..
         boolean permiteFumar =  busqueda[0].getPermiteFumar();
-        for(Departamento departamento: todos){
-            // TODO Implementar Comparator para agregar los elementos a la lista
+
+        // Expresiones lambda! ... android no soporta java 8? (filter)
+
+        for(Departamento depto: todos){
+            if(depto.getCiudad().getNombre().equals(ciudadBuscada.getNombre()) && (busqueda[0].getHuespedes()==null || depto.getCapacidadMaxima()>=huespedes)
+                && (busqueda[0].getPrecioMaximo()==null || busqueda[0].getPrecioMaximo()>=depto.getPrecio())
+                && (busqueda[0].getPrecioMinimo()==null || busqueda[0].getPrecioMinimo()<=depto.getPrecio())){
+                resultado.add(depto);
+            }
         }
+
         return resultado;
     }
 }
