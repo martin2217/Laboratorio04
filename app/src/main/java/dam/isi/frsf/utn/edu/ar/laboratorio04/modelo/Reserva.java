@@ -1,7 +1,11 @@
 package dam.isi.frsf.utn.edu.ar.laboratorio04.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Created by mdominguez on 22/09/16.
@@ -75,6 +79,7 @@ public class Reserva implements Serializable {
 
     }
 
+    public Departamento getDepartamento(){ return departamento;}
 
     public Boolean getConfirmada() {
         return confirmada;
@@ -84,4 +89,14 @@ public class Reserva implements Serializable {
         this.confirmada = confirmada;
     }
 
+
+    @Override
+    public String toString() {
+        return "Reserva{" +
+                "id=" + id +
+                ", precio=" + precio +
+                ", descripcion='" + getDepartamento().getDescripcion() + '\'' +
+                ", ciudad=" + getDepartamento().getCiudad().toString()+
+                '}';
+    }
 }

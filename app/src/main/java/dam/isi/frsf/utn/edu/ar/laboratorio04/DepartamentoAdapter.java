@@ -17,7 +17,7 @@ public class DepartamentoAdapter extends ArrayAdapter<Departamento> {
     private Context contexto;
 
     public DepartamentoAdapter(Context contexto, List<Departamento> items) {
-        super(contexto, R.layout.fila, items);
+        super(contexto, R.layout.fila_departamento, items);
         inflater = LayoutInflater.from(contexto);
     }
 
@@ -25,7 +25,7 @@ public class DepartamentoAdapter extends ArrayAdapter<Departamento> {
     public View getView(int position, View convertView, ViewGroup parent) {
         DecimalFormat df = new DecimalFormat("#.##");
         View row = convertView;
-        if (row == null) row = inflater.inflate(R.layout.fila, parent, false);
+        if (row == null) row = inflater.inflate(R.layout.fila_departamento, parent, false);
         TextView txtCiudad = (TextView) row.findViewById(R.id.ciudad);
         txtCiudad.setText(this.getItem(position).getCiudad().getNombre());
         TextView txtDescripcion = (TextView) row.findViewById(R.id.descripcion);

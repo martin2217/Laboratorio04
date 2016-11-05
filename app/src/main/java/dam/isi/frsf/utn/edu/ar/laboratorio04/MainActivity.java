@@ -27,9 +27,12 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Ciudad;
+import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Reserva;
 import dam.isi.frsf.utn.edu.ar.laboratorio04.utils.FormBusqueda;
 
 public class MainActivity extends AppCompatActivity
@@ -45,12 +48,22 @@ public class MainActivity extends AppCompatActivity
     private EditText txtHuespedes;
     private Switch swFumadores;
     private FormBusqueda frmBusq;
+
+    private static List<Reserva> reservas = new ArrayList<>();
+    public static void addReserva(Reserva reserva){
+        reservas.add(reserva);
+    }
+    public static List<Reserva> getReservas(){
+        return reservas;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
