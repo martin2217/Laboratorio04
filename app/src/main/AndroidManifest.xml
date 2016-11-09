@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".ListaDepartamentosActivity" />
         <activity android:name=".AltaReservaActivity"></activity>
+        <activity android:name=".ListaReservasActivity"></activity>
     </application>
 
 </manifest>
