@@ -35,7 +35,7 @@ public class ReservaAdapter extends ArrayAdapter<Reserva> {
         TextView txtDescripcion = (TextView) row.findViewById(R.id.descripcionR);
         txtDescripcion.setText("Unico!! " + this.getItem(position).getDepartamento().getDescripcion());
         TextView txtPrecio = (TextView) row.findViewById(R.id.precioR);
-        txtPrecio.setText("$" + (df.format(this.getItem(position).getPrecio())));
+        txtPrecio.setText("$" + (this.getItem(position).getPrecio()));
         TextView txtReserva = (TextView) row.findViewById(R.id.reserva);
         txtReserva.setText(this.getItem(position).getId().toString()+".");
         return (row);
