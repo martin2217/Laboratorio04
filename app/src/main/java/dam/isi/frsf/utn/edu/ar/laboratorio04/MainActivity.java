@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity
     private Switch swFumadores;
     private FormBusqueda frmBusq;
 
-    private static List<Reserva> reservas;
+    private static List<Reserva> reservas = new ArrayList<>();
     public static void addReserva(Reserva reserva){
         reservas.add(reserva);
     }
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        reservas = new ArrayList<>();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_perfil:
                 break;
             case R.id.nav_reservas:
-                Intent i2 = new Intent(MainActivity.this,ListaReservasActivity.class);
+                Intent i2 = new Intent(MainActivity.this,AltaReservaActivity.class);
                 startActivity(i2);
                 break;
             case R.id.nav_destinos:
