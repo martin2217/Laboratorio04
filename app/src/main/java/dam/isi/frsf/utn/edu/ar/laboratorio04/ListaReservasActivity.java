@@ -23,6 +23,7 @@ public class ListaReservasActivity extends AppCompatActivity {
     private ListView listaReservas;
     private ReservaAdapter reservasAdapter;
     private List<Reserva> lista;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,8 @@ public class ListaReservasActivity extends AppCompatActivity {
             tvEstadoBusqueda.setVisibility(View.GONE);
             lista=Reserva.getReservasDisponibles();
         }*/
-        lista=MainActivity.getReservas();
+        intent = getIntent();
+        lista = MainActivity.getReservas();
         reservasAdapter = new ReservaAdapter(ListaReservasActivity.this,lista);
         listaReservas.setAdapter(reservasAdapter);
     }
