@@ -33,11 +33,15 @@ public class ReservaAdapter extends ArrayAdapter<Reserva> {
         TextView txtCiudad = (TextView) row.findViewById(R.id.ciudadR);
         txtCiudad.setText(this.getItem(position).getDepartamento().getCiudad().getNombre());
         TextView txtDescripcion = (TextView) row.findViewById(R.id.descripcionR);
-        txtDescripcion.setText("Unico!! " + this.getItem(position).getDepartamento().getDescripcion());
+        txtDescripcion.setText(this.getItem(position).getDepartamento().getDescripcion());
         TextView txtPrecio = (TextView) row.findViewById(R.id.precioR);
         txtPrecio.setText("$" + (this.getItem(position).getPrecio()));
-        TextView txtReserva = (TextView) row.findViewById(R.id.reserva);
-        txtReserva.setText(this.getItem(position).getId().toString()+".");
+        TextView txtConfirmar = (TextView) row.findViewById(R.id.confirmar);
+        boolean auxBoolean = false;
+        if(this.getItem(position).getConfirmada()!=null) auxBoolean=this.getItem(position).getConfirmada();
+        String auxConfirmar = "Pendiente.";
+        if(auxBoolean) auxConfirmar="Confirmada.";
+        txtConfirmar.setText("Estado: " + auxConfirmar);
         return (row);
 
     }

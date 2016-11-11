@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +22,11 @@ import dam.isi.frsf.utn.edu.ar.laboratorio04.utils.FormBusqueda;
 
 public class ListaReservasActivity extends AppCompatActivity {
 
-    private ListView listaReservas;
-    private ReservaAdapter reservasAdapter;
-    private List<Reserva> lista;
     private Intent intent;
+    private ListView listaReservas;
+    private List<Reserva> lista;
+    private ReservaAdapter reservasAdapter;
+    private static Reserva reservaSeleccionada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class ListaReservasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_reservas);
         lista= new ArrayList<>();
         listaReservas= (ListView ) findViewById(R.id.listaReservas);
+        reservaSeleccionada = new Reserva();
     }
 
     @Override
@@ -53,5 +57,19 @@ public class ListaReservasActivity extends AppCompatActivity {
         lista = MainActivity.getReservas();
         reservasAdapter = new ReservaAdapter(ListaReservasActivity.this,lista);
         listaReservas.setAdapter(reservasAdapter);
+
+        listaReservas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                reservaSeleccionada = (Reserva) listaReservas.getItemAtPosition(position);
+
+                Intent i_100 = new Intent(ListaReservasActivity.this,AltaReservaActivity.class);
+                startActivity(i_100);
+            }
+        });
+    }
+
+    public static Reserva getReservaSeleccionada() {
+        return reservaSeleccionada;
     }
 }

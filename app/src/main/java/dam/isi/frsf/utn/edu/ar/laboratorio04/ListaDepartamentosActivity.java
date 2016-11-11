@@ -58,7 +58,7 @@ public class ListaDepartamentosActivity extends AppCompatActivity implements Bus
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Departamento departamentoAux = (Departamento) listaAlojamientos.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), "Departamento reservado.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Departamento pendiente de reserva.", Toast.LENGTH_LONG).show();
                 TextView sel= (TextView) findViewById(R.id.estadoBusqueda);
                 sel.setText(departamentoAux.getDescripcion());
 
