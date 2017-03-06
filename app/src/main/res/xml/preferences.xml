@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <EditTextPreference
+        android:key="usuario"
+        android:title="Usuario"
+        android:defaultValue="Nombre de usuario"
+        android:selectAllOnFocus="true"
+        android:inputType="textCapWords"
+        android:maxLines="1" />
+
+    <EditTextPreference
+        android:key="email"
+        android:title="Email"
+        android:defaultValue="Email de usuario"
+        android:selectAllOnFocus="true"
+        android:inputType="textCapWords"
+        android:singleLine="true"
+        android:maxLines="1" />
+
+    <RingtonePreference
+        android:key="ringtone"
+        android:title="Ringtone de notificacion"
+        android:ringtoneType="notification"
+        android:defaultValue="content://settings/system/notification_sound" />
+
+</PreferenceScreen>

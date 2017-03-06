@@ -61,10 +61,13 @@ public class ListaReservasActivity extends AppCompatActivity {
         listaReservas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                reservaSeleccionada = (Reserva) listaReservas.getItemAtPosition(position);
+
+                // TODO:  Eliminarrr
+
+                /*reservaSeleccionada = (Reserva) listaReservas.getItemAtPosition(position);
 
                 Intent i_100 = new Intent(ListaReservasActivity.this,AltaReservaActivity.class);
-                startActivity(i_100);
+                startActivity(i_100);*/
             }
         });
     }

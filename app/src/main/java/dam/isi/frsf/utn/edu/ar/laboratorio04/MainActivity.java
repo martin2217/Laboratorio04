@@ -1,6 +1,7 @@
 package dam.isi.frsf.utn.edu.ar.laboratorio04;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -49,9 +50,22 @@ public class MainActivity extends AppCompatActivity
     private Switch swFumadores;
     private FormBusqueda frmBusq;
 
+    // Preferencias
+    private String nombreUsuario;
+    private String correoElectronico;
+    private Uri ringtone;
+
     private static List<Reserva> reservas = new ArrayList<>();
     public static void addReserva(Reserva reserva){
         reservas.add(reserva);
+    }
+    public static void actualizarReserva(Reserva reserva){
+        for(Reserva res: reservas){
+            if (res.getId().equals(reserva.getId())){
+                res.setConfirmada(true);
+                break;
+            }
+        }
     }
     public static List<Reserva> getReservas(){
         return reservas;
@@ -103,7 +117,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onClick(View view) {
             Intent i = new Intent(MainActivity.this,ListaDepartamentosActivity.class);
-            frmBusq.setPermiteFumar(swFumadores.isSelected());
+            frmBusq.setPermiteFumar(swFumadores.isChecked());
             i.putExtra("esBusqueda",true);
             i.putExtra("frmBusqueda",frmBusq);
             startActivity(i);
@@ -215,6 +229,11 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_ofertas:
                 break;
             case R.id.nav_perfil:
+                Intent i3 = new Intent(MainActivity.this,PreferenciasActivity.class);
+                i3.putExtra("usuario", nombreUsuario);
+                i3.putExtra("correo", correoElectronico);
+                i3.putExtra("ringtone", ringtone);
+                startActivity(i3);
                 break;
             case R.id.nav_reservas:
                 Intent i2 = new Intent(MainActivity.this,ListaReservasActivity.class);

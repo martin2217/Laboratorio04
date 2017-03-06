@@ -3,7 +3,6 @@ package dam.isi.frsf.utn.edu.ar.laboratorio04;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -43,7 +42,6 @@ public class ListaDepartamentosActivity extends AppCompatActivity implements Bus
         Boolean esBusqueda = intent.getExtras().getBoolean("esBusqueda");
         if(esBusqueda){
             FormBusqueda fb = (FormBusqueda ) intent.getSerializableExtra("frmBusqueda");
-            // faltan datos (huespeedes, permite fumar)
             new BuscarDepartamentosTask(ListaDepartamentosActivity.this).execute(fb);
             tvEstadoBusqueda.setText("Buscando....");
             tvEstadoBusqueda.setVisibility(View.VISIBLE);
@@ -58,22 +56,11 @@ public class ListaDepartamentosActivity extends AppCompatActivity implements Bus
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Departamento departamentoAux = (Departamento) listaAlojamientos.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), "Departamento pendiente de reserva.", Toast.LENGTH_LONG).show();
-                TextView sel= (TextView) findViewById(R.id.estadoBusqueda);
-                sel.setText(departamentoAux.getDescripcion());
 
-                lista.remove(departamentoAux);
-                departamentosAdapter = new DepartamentoAdapter(ListaDepartamentosActivity.this,lista);
-                listaAlojamientos.setAdapter(departamentosAdapter);
+                Intent i = new Intent(ListaDepartamentosActivity.this,AltaReservaActivity.class);
+                i.putExtra("departamento", departamentoAux);
+                startActivity(i);
 
-                List<Reserva> reservas = MainActivity.getReservas();
-                Integer nuevoId = 0;
-                if(reservas!=null && reservas.size()>0){
-                    nuevoId = reservas.get(reservas.size()-1).getId()+1;
-                }
-                Reserva reservaAux = new Reserva(nuevoId, new Date(), new Date(), departamentoAux);
-
-                MainActivity.addReserva(reservaAux);
             }
         });
     }

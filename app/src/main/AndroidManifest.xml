@@ -21,6 +21,10 @@
         <activity android:name=".ListaDepartamentosActivity" />
         <activity android:name=".ListaReservasActivity" />
         <activity android:name=".AltaReservaActivity" />
+        <activity android:name=".PreferenciasActivity" />
+
+        <receiver android:name=".utils.TestReceiver"/>
+
     </application>
 
 </manifest>

@@ -6,20 +6,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
+import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Departamento;
 import dam.isi.frsf.utn.edu.ar.laboratorio04.modelo.Reserva;
+import dam.isi.frsf.utn.edu.ar.laboratorio04.utils.AlarmaReserva;
 
 public class AltaReservaActivity extends AppCompatActivity {
 
     private Button confirmarReserva;
     private EditText fechaInicio;
     private EditText fechaFin;
-    private Reserva reserva;
     private Intent intent;
+    private Departamento departamento;
 
 
     @Override
@@ -28,6 +32,9 @@ public class AltaReservaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alta_reserva);
         fechaInicio = (EditText) findViewById(R.id.txtFechaInicio);
         fechaFin = (EditText) findViewById(R.id.txtFechaFin);
+
+        departamento=(Departamento) getIntent().getExtras().get("departamento");
+
         confirmarReserva = (Button) findViewById(R.id.btnConfirmarReserva);
         confirmarReserva.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +52,7 @@ public class AltaReservaActivity extends AppCompatActivity {
                         stringAux.substring(2,4) + "/" + stringAux.substring(4,8);
 
                 try {
+                    // TODO: Usar calendar
                     fechaInicioDate = formato.parse(stringFechaInicio);
                     fechaFinDate = formato.parse(stringFechaFin);
                 } catch (ParseException e) {
@@ -54,23 +62,15 @@ public class AltaReservaActivity extends AppCompatActivity {
                 /*Integer idAux = 0;
                 if(departamento.getReservas()!=null){
                     idAux = departamento.getReservas().get(departamento.getReservas().size()-1).getId()+1;
-                }
+                }*/
 
-                Reserva reserva = new Reserva(idAux,fechaInicioDate,fechaFinDate,departamento);*/
+                Reserva reservaNueva = new Reserva(MainActivity.getReservas().size()+1, fechaInicioDate, fechaFinDate, departamento);
 
-                reserva.setFechaInicio(fechaInicioDate);
-                reserva.setFechaFin(fechaFinDate);
-                reserva.setConfirmada(true);
+                MainActivity.addReserva(reservaNueva);
 
-                //departamento.getReservas().add(reserva);
+                Toast.makeText(v.getContext(), "Reserva dada de alta con éxito (pendiente)." , Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(v.getContext(), "Reserva dada de alta con éxito." , Toast.LENGTH_SHORT).show();
-
-                //new AlarmaReserva(this, reserva,usuario);
-
-                //Intent i = new Intent(this,MainActivity.class);
-                //i.putExtra("usuario",usuario);
-                //startActivity(i);
+                new AlarmaReserva(AltaReservaActivity.this, reservaNueva);
 
                 finish();
             }
@@ -81,7 +81,6 @@ public class AltaReservaActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         intent = getIntent();
-        reserva = ListaReservasActivity.getReservaSeleccionada();
     }
 
 

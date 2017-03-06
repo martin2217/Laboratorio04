@@ -55,7 +55,6 @@ public class BuscarDepartamentosTask extends AsyncTask<FormBusqueda,Integer,List
         //double min = busqueda[0].getPrecioMinimo();
         //double max = busqueda[0].getPrecioMaximo();
 
-        // No tenido en cuenta..
         boolean permiteFumar =  busqueda[0].getPermiteFumar();
 
         // Expresiones lambda! ... android no soporta java 8? (filter)
@@ -63,7 +62,8 @@ public class BuscarDepartamentosTask extends AsyncTask<FormBusqueda,Integer,List
         for(Departamento depto: todos){
             if(depto.getCiudad().getNombre().equals(ciudadBuscada.getNombre()) && (busqueda[0].getHuespedes()==null || depto.getCapacidadMaxima()>=huespedes)
                 && (busqueda[0].getPrecioMaximo()==null || busqueda[0].getPrecioMaximo()>=depto.getPrecio())
-                && (busqueda[0].getPrecioMinimo()==null || busqueda[0].getPrecioMinimo()<=depto.getPrecio())){
+                && (busqueda[0].getPrecioMinimo()==null || busqueda[0].getPrecioMinimo()<=depto.getPrecio())
+                && depto.getNoFumador()!=permiteFumar){
                 resultado.add(depto);
             }
         }

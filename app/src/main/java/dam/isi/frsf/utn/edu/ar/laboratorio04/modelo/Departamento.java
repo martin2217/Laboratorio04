@@ -37,7 +37,7 @@ public class Departamento implements Serializable {
         this.cantidadHabitaciones = 1+r.nextInt(3);
         this.cantidadCamas =this.cantidadHabitaciones+r.nextInt(2);
         this.telefonoPropietario= "+54"+(111111+r.nextInt());
-        this.ciudad = Ciudad.CIUDADES[r.nextInt(5)];
+        this.ciudad = Ciudad.CIUDADES[r.nextInt(6)];
         this.reservas=new ArrayList<Reserva>();
     }
 
@@ -47,6 +47,13 @@ public class Departamento implements Serializable {
         this.id=id;
     }
 
+    public Boolean getNoFumador(){
+        return noFumador;
+    }
+
+    public void setNofumador(Boolean noFum){
+        this.noFumador=noFum;
+    }
     public Integer getId() {
         return id;
     }
